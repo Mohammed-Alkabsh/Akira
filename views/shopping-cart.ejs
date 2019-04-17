@@ -1,0 +1,69 @@
+<% include partials/header %>
+
+
+
+    
+    <div id="Shopping-cart">
+        <div class="container">
+            <div class="row shopping-cart-wrapper">
+                <% if( products != null) { %>
+                    <div class="shopping-cart-items col-xl-9 col-lg-12">
+                        <h2>YOUR ITEM'S</h2>
+                        <% for( var i = 0; i < products.length; i++){ %>
+                            <div class="cart-item">
+                                <div class="item-img-cont">
+                                    <img class="item-img" src="<%= products[i].item.image %>" >
+                                </div>
+                                <div class="cart-item-desc">
+                                    <h5><%= products[i].item.title %></h5>
+                                    <p><%= products[i].item.description %></p>
+                                </div>
+                                <div class="cart-item-price">
+                                    <p><span>$</span><%= products[i].price %></p>
+                                </div>
+                                <div class="cart-item-buttons">
+                                    <div class="quantity-buttons">
+                                        <a id="add" href="#">+</a>
+                                        <div id="subtract" class="quantity-amount"><%=products[i].qty%></div>
+                                        <a href="#">-</a>
+                                    </div>
+                                    <div class="delete-button">
+                                        <a href="#"><i class="fas fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="cart-item-divider">
+                            
+                        <% } %>
+                        <hr class="subtotal-hr">
+                        <div class="total-cont">
+                            <p class="sub">SUBTOTAL</p>
+                            <p class="sub-total"><span>$</span><%= totalPrice.toFixed(2) %></p>
+                        </div>
+                    </div>
+                    <div class="order-placement col-xl-3 col-lg-12">
+                        <h2>PLACE YOUR ORDER</h2>
+                        <div class="order-options one">
+                            <h4>Order by Phone</h4>
+                            <a href="tel: 1-815-713-2563" class="btn">1-815-713-2563</a>
+                        </div>
+                        <hr id="order-divider">
+                        <div class="order-options two">
+                            <h4>Order Online</h4>
+                            <a href="/checkout" class="btn">CHECKOUT</a>
+                        </div>
+                        
+                    </div>
+                <% } else{ %>
+                    <div class="no-items-cont col-lg-12 col-md-12 col-sm-12 col-12" style="margin: 0 auto">
+                        <h2>YOU HAVEN'T SELECTED ANY ITEMS</h2>
+                        <p>Go to the <a href="/menu"><strong>menu</strong></a> to make your selections.</p>
+                    </div>
+                    
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+<% include partials/footer %>

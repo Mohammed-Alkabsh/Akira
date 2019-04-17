@@ -1,0 +1,387 @@
+.slide-show{
+    position: relative;
+    background-color: gray;
+    height: 80vh;
+    width: 100vw;
+    top: 90px;
+}
+.slides{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#slide-1{
+    background-image: url(http://images6.fanpop.com/image/photos/38800000/-Beautiful-Sushi-sushi-38873156-1920-942.jpg);
+    
+}
+#slide-2{
+    background-image: url(http://yesofcorsa.com/wp-content/uploads/2018/03/Ramen-Wallpaper-Full-HD-1024x696.jpg);
+}
+#slide-3{
+    background-image: url(https://www.traegergrills.com/images/en-us/Shared/images/recipes/banners/Beef/DW_Recipe_Simple_Steak_Ribeye_Hero.jpg);
+}
+#slide-4{
+    background-image: url(https://media.gqindia.com/wp-content/uploads/2015/12/Least-calorific-drinks-top-image-jignesh-zaveri-.jpg);
+}
+.slides-info{
+    position: absolute;
+    display: inline-block;
+    bottom: 50%;
+    left: 75%;
+    transform: translateX(-50%);
+    height: auto;
+    width: 200px;
+    padding: 15px 20px;
+    background-color: #991D1D;
+    color: #FFA100;
+    letter-spacing: 2px;
+    line-height: 40px;
+    text-align: center;
+}
+.slides-info a{
+    color: #FFA100;
+    background-color: #991D1D;
+    padding: 2px 10px;
+    transition: all 0.3s;
+    text-decoration: none;
+    border: 2px solid #FFA100;
+    outline: none;
+}
+.slides-info a:hover{
+    color: #991D1D;
+    background-color: #FFA100;
+}
+.slide-buttons{
+    z-index: 2;
+    position: relative;
+    top: 75%;
+    left: 75%;
+    height: 50px;
+    width: 120px;
+    transform: translateY(-50%) translateX(-50%);
+}
+.slide-btn{
+    height: 100%;
+    width: 50%;
+    font-size: 42px;
+    overflow: hidden;
+    background-color: #991D1D;
+    color: #FFA100;
+    padding: 0;
+    border: none;
+    transition: all 0.5s;
+}
+.slide-btn:hover, .daily-btns:hover{
+    background-color: #FFA100;
+    color: #991D1D;
+}
+.slide-btn:focus, .daily-btns:focus{
+    outline-color: #FFA100;
+}
+.slide-btn i{
+    position: relative;
+    top: -7px;
+}
+#btn-one{
+    position: absolute;
+    right: 0;
+}
+
+
+#deals{
+    position: relative;
+    top: 90px;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    background-color: #303330;
+    padding: 50px 0;
+}
+.deal{
+    box-sizing: border-box;
+}
+.deal h3{
+    color: #D1D1D1;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.deal a{
+    color: #991D1D;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.deal a:hover{
+    color: #FFA100;
+}
+.deal h4{
+    text-shadow: 30px 5px 20px #D1D1D1;
+    color: #FFA100;
+    letter-spacing: 7px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.info-section{
+    display: flex;
+}
+.info-a-cont{
+    width: 60%;
+    font-size: 15px;
+}
+.deal-image{
+    width: 40%;
+    height: 70px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#football-image{
+    background-image: url(/images/soccerball.jpg);
+}
+#student-image{
+    background-image: url(/images/glasses.jpg);
+}
+#general-info{
+    position: relative;
+    top: 90px;
+    background-color: #E8E8E8;
+    padding: 50px 0;
+}
+.w-w-a-h{
+    font-weight: bolder;
+    color: #303330;
+    font-size: 27px;
+    letter-spacing: 4px;
+}
+.who-we-are{
+    
+}
+.who-we-are p{
+    color: #AA7C2C;
+    font-size: 14px;
+    text-align: justify;
+}
+.who-we-are .dark-text{
+    color: #303330;
+    margin-top: -5px;
+}
+.hours-cont{
+    
+}
+.hours-cont p{
+    color: #991D1D;
+    font-size: 14px;
+    margin: 0;
+}
+.contact-cont{
+    margin-top: 20px;
+}
+.address p{
+    font-size: 14px;
+}
+.address p a, .address h4 a{
+    color: #991D1D;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.address p a:hover, .address h4 a:hover{
+    color: #FFA100;
+}
+
+.daily-dishes-slideshow{
+    position: relative;
+    float: left;
+    border: 3px solid #991D1D;
+    height: 240px;
+    width: 80%;
+    display: flex;
+    margin: 10px 0 0 0;
+    padding: 0;
+    overflow: hidden;
+}
+.daily-slides-cont{
+    position: absolute;
+    display: flex;
+    left: 0;
+    height: 100%;
+    width: 400%;
+}
+.quad-box-cont{
+    margin: 0;
+    height: 100%;
+    width: 25%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
+}
+.quad-box-child{
+    height: 100%;
+    width: 100%;
+    border: .2px solid #991D1D;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#b-c-1-1{
+    background-image: url(https://i.pinimg.com/564x/c0/aa/34/c0aa34e883963674b14e16d0d6fce28e.jpg);
+}
+#b-c-1-2{
+    background-image: url(https://i.pinimg.com/564x/f6/73/c2/f673c20478689c72857fe0e1bac93352.jpg?b=t);
+}
+#b-c-1-3{
+    background-image: url(https://i.pinimg.com/564x/0b/3a/df/0b3adfc5b72b4a34503a94139456a817.jpg);
+}
+#b-c-1-4{
+    background-image: url(https://i.pinimg.com/564x/a2/13/96/a213961b742bfb79bdb37e39ab4354c2.jpg);
+}
+#b-c-2-1{
+    background-image: url(https://i.pinimg.com/564x/08/57/73/085773594b03e8be0dc1addfa1aebc24.jpg);
+}
+#b-c-2-2{
+    background-image: url(https://i.pinimg.com/564x/a2/13/96/a213961b742bfb79bdb37e39ab4354c2.jpg);
+}
+#b-c-2-3{
+    background-image: url(https://i.pinimg.com/564x/86/27/59/8627595f6e1163b0353c7eaf6f9637e1.jpg);
+}
+#b-c-2-4{
+    background-image: url(https://i.pinimg.com/564x/8c/65/3e/8c653e20a48440bb7a8e52184aeb7af6.jpg);
+}
+#b-c-3-1{
+    background-image: url(https://i.pinimg.com/564x/ee/90/5a/ee905a48495c769af87d0fada25a9bd0.jpg);
+}
+#b-c-3-2{
+    background-image: url(https://i.pinimg.com/564x/ec/97/a5/ec97a5305a418107d9a6dfdc69058965.jpg);
+}
+#b-c-3-3{
+    background-image: url(https://i.pinimg.com/564x/16/f1/82/16f18219cf599d9acf62eeefbd249c60.jpg);
+}
+#b-c-3-4{
+    background-image: url(https://i.pinimg.com/564x/8c/b1/4b/8cb14b9f6ccde7a03586e033a9c29e60.jpg?b=t);
+}
+#b-c-4-1{
+    background-image: url(https://i2.wp.com/butteryourbiscuit.com/wp-content/uploads/2019/02/pan-seared-rib-eye-steak-7.jpg?w=680&ssl=1);
+}
+#b-c-4-2{
+    background-image: url(https://i.pinimg.com/564x/db/78/e4/db78e4be04fd8f38eb308a075e4c3497.jpg?b=t);
+}
+#b-c-4-3{
+    background-image: url(https://i.pinimg.com/564x/b9/af/25/b9af255b8a73d382a77b4a69f28f580b.jpg);
+}
+#b-c-4-4{
+    background-image: url(https://www.thecookierookie.com/wp-content/uploads/2018/05/best-crab-cakes-recipe-baltimore-crab-cakes-2-of-6.jpg);
+}
+.daily-dishes-slide-btns{
+    width: 70px;
+    margin: 10px 0 0 0;
+    float: right;
+}
+.daily-btns{
+    height: auto;
+    width: auto;
+    padding: 0 15px;
+    background-color: #991D1D;
+    color: #FFA100;
+    border: none;
+    font-size: 42px;
+    overflow: hidden;
+    transition: all 0.5s;
+    outline-color: #FFA100 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 993px){
+    #deals{
+        padding: 0 0 50px 0;
+    }
+    .deal{
+        margin: 50px 0 0 0;
+    }
+    .daily-dishes{
+        margin: 40px 0 0 0;
+    }
+    .daily-dishes h2{
+        margin: 0 0 20px 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 770px) {
+    .slide-show{
+        height: 400px;
+    }
+    .slides-info{
+        left: 0;
+        bottom: 0;
+        transform: translateX(0);
+        height: 100px;
+        width: 100%;
+    }
+    .slide-buttons{
+        top: 50%;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        transform: translateY(-50%);
+        background: transparent;
+    }
+    .slide-btn{
+        height: 50px;
+        width: 50px;
+    }
+    .who-we-are{
+        margin-bottom: 20px;
+    }
+    .daily-dishes-slideshow{
+        height: 270px;
+        width: 100%;
+        float: none;
+    }
+    .daily-dishes-slide-btns{
+        width: 100%;
+        float: none;
+        margin-top: 20px;
+    }
+    #daily-right{
+        float: right;
+    }
+    
+    
+}

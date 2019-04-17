@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div id="signup">
+    <div class="container">
+        <div class="form-cont">
+            <h2>Create Account</h2>
+            <h6>Sign up to make online orders, like any of our food items, and write reviews</h6>
+            <form action="/user/signup" method="POST">
+                <div class="input-wrap">
+                    <input class="type-inputs" type="email" name="email" placeholder="E-mail" minLength="5" maxLength="30" required>
+                    <input class="type-inputs" type="text" name="username" placeholder="Username" minLength="3" maxLength="20" required>
+                    <input class="type-inputs" type="password" name="password" placeholder="Password"minLength="5" maxLength="15" required>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    <input type="submit">
+                </div>
+            </form>
+            <div class="login-link-wrap">
+                <p>Already have an Account? <a href="/user/login">Login</a></p>
+                <div>
+                    <a href="/">Back to Home?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

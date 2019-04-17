@@ -1,0 +1,25 @@
+ <% include ../partials/header %>
+<div id="login">
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>HELLO</h2>
+            <h6>Sign into your Account</h6>
+            <form action="/user/login" method="POST">
+                <div class="input-wrap">
+                    <input id="username" type="text" name="username" placeholder="Username" minLength="5" maxLength="30" required>
+                    <input id="password" type="password" name="password" placeholder="Password" minLength="3" maxLength="25" required>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
+                    <input type="submit">
+                </div>
+            </form>
+            <div class="sign-up-link-wrap">
+                <p>Don't have an Account? <a href="/user/signup">Register Now!</a></p>
+                <div>
+                    <a href="/">Back to Home?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+

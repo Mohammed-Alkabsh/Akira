@@ -1,0 +1,237 @@
+#Shopping-cart{
+    position: relative;
+    top: 90px;
+    padding: 50px 0;
+    min-height: auto;
+    max-width: 100vw;
+    overflow: hidden;
+}
+.shopping-cart-wrapper{
+    border-radius: 20px;
+    background-color: #303330;
+    padding: 10px;
+}
+.no-items-cont{
+    padding: 50px 20px;
+    background-color: #f2f2f2;
+    max-height: 500px;
+    min-height: 50vh;
+    border-radius: 20px;
+    text-align: center;
+}
+.no-items-cont h2{
+    position: relative;
+    top: 20%;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+.no-items-cont p{
+    color: #991D1D;
+    position: relative;
+    top: 20%;
+}
+.no-items-cont p a{
+    color: #991D1D;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.no-items-cont p a:hover{
+    color: #AA7C2C;
+}
+.shopping-cart-items{
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+}
+.shopping-cart-items h2, .order-placement h2{
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+.order-placement{
+    text-align: center;
+    padding: 50px;
+    background-color: #303330;
+    max-height: 500px;
+    color: #f2f2f2;
+}
+.order-options h4{
+    color: #D1D1D1;
+}
+.one a{
+    color: #AA7C2C;
+    transition: all 0.3s;
+}
+.one a:hover{
+    color: #FFA100;
+}
+.two a{
+    color: #fff;
+    border-radius: none;
+    background-color: #AA7C2C;
+    margin-top: 13px;
+    transition: all 0.3s ease-out;
+}
+.two a:hover{
+    background-color: #FFA100;
+    color: #fff;
+}
+#order-divider{
+    background-color: #fff;
+}
+.cart-item{
+    display: grid;
+    grid-template-columns: 25% 44% 10% 21%;
+}
+.item-img-cont{
+    height: 100px;
+    width: 140px;
+    margin: 10px;
+    overflow: hidden;
+}
+.item-img{
+    height: 100%;
+    width: 100%;
+}
+.cart-item-desc{
+    height: 100px;
+    width: 100%;
+    margin: 10px 0;
+}
+.cart-item-desc h5{
+    font-weight: 700;
+}
+.cart-item-desc p{
+    font-size: 10px;
+    padding-right: 15px;
+    color: #AA7C2C;
+}
+.cart-item-price p{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+.cart-item-price p span{
+    color: silver;
+    font-size: 13px;
+    margin-right: 5px;
+}
+.cart-item-buttons{
+    height: 100px;
+    display: flex;
+    margin: 10px auto;
+}
+.quantity-buttons, .delete-button{
+    height: 100px;
+    padding: 1px 18px;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-size: 22px;
+    text-align: center;
+    background-color: #fff;
+}
+.delete-button a{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    text-decoration: none;
+    padding: 2px;
+    color: #303330;
+    transition: color 0.3s;
+}
+.quantity-buttons a{
+    color: #303330;
+    text-decoration: none;
+    padding: 4px;
+    font-size: 22px;
+    transition: color 0.3s;
+}
+.quantity-buttons a:hover, .delete-button a:hover{
+    color: #962D21;
+}
+.subtotal-hr{
+    margin-top: -17px;
+    background-color: black;
+}
+.sub{
+    float: left;
+}
+.sub-total{
+    float: right;
+}
+
+@media only screen and (max-width: 993px){
+    .shopping-cart-items, .order-placement{
+        padding: 50px 20px;
+    }
+    .cart-item{
+        display: grid;
+        grid-template-columns: 25% 40% 10% 25%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .cart-item{
+        grid-template-columns: 160px auto auto;
+        grid-template-rows: auto 100px;
+        grid-template-areas:
+        "pic price buttons"
+        "text text text";
+        margin-bottom: -25px;
+    }
+    .item-img-cont{
+        grid-area: pic;
+    }
+    .cart-item-desc{
+        grid-area: text;
+        padding-left: 10px;
+    }
+    .cart-item-buttons{
+        grid-area: buttons;
+    }
+}
+
+@media only screen and (max-width: 506px){
+    .shopping-cart-items{
+        padding: 50px 10px;
+    }
+}
+@media only screen and (max-width: 406px){
+    .shopping-cart-items{
+        padding: 50px 10px;
+    }
+    .cart-item{
+        max-width: 300px;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+        "pic pic"
+        "text text"
+        "price buttons";
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .item-img-cont{
+        margin: 0 auto;
+        width: 100%;
+        height: 150px;
+    }
+    .cart-item-desc{
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+    .cart-item-desc h5{
+        text-align: justify;
+    }
+    .cart-item-buttons{
+        margin-right: 0;
+    }
+    
+    
+    
+    
+    
+}

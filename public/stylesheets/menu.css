@@ -1,0 +1,123 @@
+#menu{
+    position: relative;
+    top: 90px;
+    padding: 50px 0;
+    overflow: hidden;
+}
+.container{
+    overflow: hidden;
+}
+
+.heading-container h2{
+    font-weight: 900;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #303330;
+    margin-bottom: 40px;
+}
+.menu-filter-list{
+    list-style: none;
+    margin-bottom: 80px;
+}
+.menu-filter-list li{
+    display: inline-block;
+}
+.menu-filter-list li button{
+    border: none;
+    color: #962D21;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none !important;
+    font-size: 13px;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+.menu-filter-list li button:hover, .picked{
+    color: #303330 !important ;
+}
+
+.menu{
+    padding: 50px 0 40px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.food-box{
+    padding: 0;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    background-color: #f2f2f2;
+    margin: 30px;
+    max-width: 300px;
+}
+.food-box-hovered, .food-box:hover{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.food-img-cont{
+    height: 170px;
+    width: 100%;
+    overflow: hidden;
+    border: 3px solid #962D21;
+}
+.food-img{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #FFA100;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 4s;
+}
+.food-name-and-price{
+    padding: 10px;
+    height: 50px;
+}
+.food-name{
+    float: left;
+    color: #AA7C2C;
+}
+.food-price{
+    float: right;
+    color: #962D21;
+}
+.h-i-hr{
+    border-color: #FFA100;
+}
+.food-hidden-info{
+    max-height: 0;
+    position: relative;
+    top: -20px;
+    text-align: justify;
+    padding: 4px 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.info-box-hovered{
+    max-height: 300px;
+    transition: all 1s;
+}
+.food-hidden-info p{
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.4s;
+}
+.p-hovered{
+    opacity: 1 !important;
+}
+.food-hidden-info a{
+    display: block;
+    background-color: #962D21;
+    color: #FFA100;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+.food-hidden-info a:hover{
+    color: #962D21;
+    background-color: #FFA100;
+}

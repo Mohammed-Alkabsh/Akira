@@ -1,0 +1,51 @@
+<% include partials/header %>
+
+<div id="Checkout">
+    <div class="container">
+        <div class="row">
+            <div class="checkout col-lg-6 col-md-6 col-sm-8 col-12" style="margin: 0 auto;">
+                <h1>CHECKOUT</h1>
+                <hr>
+                <div class="h-four">
+                    <h4>Your Total:</h4>
+                    <h5><span>$</span><%=total%></h5>
+                </div>
+                <form action="/checkout" method="POST" id="checkout-form">
+                    <div class="col-12">
+        
+                        <div class="form-group">
+        
+                            <input type="text" placeholder="Name" name="name" id="name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            
+                            <input type="text" placeholder="Address" name="address" id="address" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" placeholder="Name on card" name="card-name" id="card-name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group"></div>
+                            
+                            <div id="card-element">
+                              <!-- A Stripe Element will be inserted here. -->
+                            </div>
+                        
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
+                        
+                            <input type="submit" class="btn btn-success">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>

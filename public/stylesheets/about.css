@@ -1,0 +1,117 @@
+#about{
+    position: relative;
+    top: 90px;
+    padding-top: 50px;
+}
+.section-heading{
+    font-weight: 1000;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #303330;
+    margin-bottom: 40px;
+}
+#about-img-cont{
+    width: 100%;
+    height: 200px;
+    border: 3px solid #962D21;
+    margin-bottom: 30px;
+}
+#about-img{
+    height: 100%;
+    width: 100%;
+    background-image: url(https://greatist.com/sites/default/files/SlowCooker-Pork-Ramen_0.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #FFA100;
+}
+.sub-section{
+    margin-bottom: 40px;
+}
+.sub-section p{
+    margin: 20px 0;
+    color: #AA7C2C;
+}
+.dark-text{
+    color: #303330 !important;
+}
+
+
+
+#hist-list{
+    list-style: none;
+    padding: 0;
+}
+#hist-list li{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-bottom: 30px;
+}
+.span-cont{
+    display: inline-block;
+    padding: 0 20px 0 0 ;
+    width: 70px;
+    color: #962D21;
+}
+.content-cont p{
+    margin: 0;
+}
+.content-cont a{
+    text-decoration: none;
+    color: #962D21;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.content-cont a:hover{
+    color: #FFA100;
+}
+
+#features-list{
+    padding: 0;
+    list-style: none;
+}
+#features-list li{
+    display: grid;
+    grid-template-columns: 10% 80%;
+    margin-bottom: 10px;
+}
+
+
+.staff{
+    margin-bottom: 30px;
+}
+.staff .image-cont{
+    height: 170px;
+    width: 100%; 
+    border: 3px solid #962D21;
+    margin-bottom: 20px;
+}
+.staff h4{
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: bold
+}
+.staff p{
+    color: #AA7C2C;
+}
+.staff-img{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #FFA100;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+#staff-1{
+    background-image: url(https://comps.canstockphoto.com/japanese-chef-in-restaurant-making-sushi-stock-photography_csp4027360.jpg);
+}
+#staff-2{
+    background-image: url(https://img1.mashed.com/img/gallery/easy-dishes-that-make-you-seem-like-a-professional-chef/intro.jpg);
+}
+#staff-3{
+    background-image: url(http://finedininglovers.cdn.crosscast-system.com/BlogPost/xl_7361_TP-LANSHU-CHEN-finedininglovers.jpg);
+}
+#staff-4{
+    background-image: url(http://i.yomyomf.com/wp-content/uploads/2014/01/sushi.jpg);
+}

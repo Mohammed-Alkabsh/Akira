@@ -1,0 +1,57 @@
+<% include partials/header %>
+
+<div id="menu">
+    <div class="container">
+        <div class="popup">
+            <div class="popup-item">
+                <div class="p-i-i"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="heading-container col-lg-12">
+                <h2>MENU</h2>
+            </div>
+            <div class="menu-filter-box col-lg-12">
+                <ul class="menu-filter-list">
+                    <li data-filter="*"><button class="picked">SHOW ALL</button></li>
+                    <li data-filter=".breakfast"><button>BREAKFAST</button></li>
+                    <li data-filter=".lunch"><button>LUNCH</button></li>
+                    <li data-filter=".dinner"><button>DINNER</button></li>
+                    <li data-filter=".salads"><button>SALADS</button></li>
+                    <li data-filter=".soups"><button>SOUPS</button></li>
+                    <li data-filter=".desserts"><button>DESSERTS</button></li>
+                    <li data-filter=".drinks"><button>DRINKS</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row menu">
+            
+            <% products.forEach(function(food){  %>
+                <div class="food-box  <%= food.type %> col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="food-img-cont">
+                        <img src="<%= food.image %>" class="food-img">
+                    </div>
+                    <div class="food-name-and-price">
+                        <p class="food-name"> <%= food.title %></p>
+                        <p class="food-price">$  <%= food.price %></p>
+                    </div>
+                    <div class="food-hidden-info">
+                        <hr class="h-i-hr">
+                        <p>
+                             <%= food.description %>
+                        </p>
+                        <a href="/add-to-cart/<%= food._id %>">ADD TO CART</a>
+                    </div>
+                </div>
+             <% }); %>
+            
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include partials/footer %>
