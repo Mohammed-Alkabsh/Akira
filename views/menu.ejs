@@ -1,12 +1,76 @@
 <% include partials/header %>
 
 <div id="menu">
-    <div class="container">
-        <div class="popup">
-            <div class="popup-item">
-                <div class="p-i-i"></div>
+    <div id="item-info" class="animated">
+        <div id="picked-item">
+            <button id="p-i-close-btn"><i class="fas fa-times"></i></button>
+            <div id="p-i-image"></div>
+            <div class="p-i-h-c">
+                <h4 id="p-i-h">Tasty Food</h4>
+                <p class="p-i-price"><span>$</span>10.99</p>
+            </div>
+            <p id="popup-d">Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr</p>
+            <a class="add-to-cart" href="#">ADD TO CART</a>
+            
+            <button class="leave-review">LEAVE A REVIEW</button>
+        
+            <div class="hidden-review-form">
+                <hr>
+                <form action="/add-review" method="POST">
+                    <div class="stars-cont">
+                        <label class="star" for="one-star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="one-star" name="star" value="1" required>
+                        <label class="star" for="two-star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="two-star" name="star" value="2" required>
+                        <label class="star" for="three-star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="three-star" name="star" value="3" required>
+                        <label class="star" for="four-star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="four-star" name="star" value="4" required>
+                        <label class="star" for="five-star"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="five-star" name="star" value="5" required>
+                    </div>
+                    <div class="r-c-v">
+                        <div class="o-t"></div>
+                        <p>Please select one of these</p>
+                    </div>
+                    <textarea name="comment" placeholder="Comment..." required></textarea>
+                    <input id="submit-btn" type="submit">
+                </form>
+            </div>
+            <hr>
+            <div class="comment-cont">
+                <div class="comment">
+                    <h5 class="user-name">Timmy</h5>
+                    <ul class="rating-cont">
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                    </ul>
+                    <div class="user-comment">
+                        <p>This is so good</p>
+                    </div>
+                     
+                </div>
+                <div class="comment">
+                    <h5 class="user-name">John</h5>
+                    <ul class="rating-cont">
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                    </ul>
+                    <div class="user-comment">
+                        <p>I had this last night, it was amazing!</p>
+                    </div>
+                   
+                </div>
             </div>
         </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="heading-container col-lg-12">
                 <h2>MENU</h2>
@@ -35,12 +99,48 @@
                         <p class="food-name"> <%= food.title %></p>
                         <p class="food-price">$  <%= food.price %></p>
                     </div>
+                    <div class="reviews">
+                        
+                        <% food.reviews.forEach(function(review){ %>
+                        
+                        <% }) %>
+                    </div>
                     <div class="food-hidden-info">
                         <hr class="h-i-hr">
-                        <p>
+                        <p class="food-descrition">
                              <%= food.description %>
                         </p>
-                        <a href="/add-to-cart/<%= food._id %>">ADD TO CART</a>
+                        <a class="add-to-cart" href="/add-to-cart/<%= food._id %>">ADD TO CART</a>
+                        <a class="leave-review" href="/leave-review/<%= food._id %>">LEAVE REVIEW</a>
+                        <div class="reviews-container">
+                        <% if( food.reviews.length > 0 ){ %>
+                            <% food.reviews.forEach(function(review){ %>
+                            
+                                <div class="comment">
+                                    <h5 class="user-name"><%= review.author.username %></h5>
+                                    <ul class="rating-cont">
+                                        <% for( var i = 0; i < 5; i++ ) {%>
+                                            <% if( i < review.stars ) { %>
+                                                <li class="star-rating label-high"><i class="fas fa-star"></i></li>
+                                            <% }else{ %>
+                                                <li class="star-rating"><i class="fas fa-star"></i></li>
+                                            <% } %>
+                                        <% } %>
+                                    </ul>
+                                    <div class="user-comment">
+                                        <p><%= review.text %></p>
+                                    </div>
+                                     
+                                </div>
+                                
+                            <% }) %>
+                        <% }else{ %>
+                            <div class="no-comments">
+                                <h4><i class="fas fa-chevron-up"></i></h4>
+                                <h4>Be the first to leave a review!</h4>
+                            </div>
+                        <% } %>
+                        </div>
                     </div>
                 </div>
              <% }); %>

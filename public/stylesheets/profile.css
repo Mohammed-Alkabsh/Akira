@@ -128,13 +128,14 @@ h1{
     padding: 10px 20px;
     box-sizing: border-box;
     margin: 10px auto;
-    background-color: #fff;
+    background-color: #f2f2f2;
     cursor: pointer;
     appearance: none !important;
     outline: none!important;
     color: #962D21;
     border-radius: 5px;
-    border-right: 3px solid #962D21;
+    border: 5px solid transparent;
+    border-right: 10px solid #962D21;
     transition: all 0.3s;
 }
 .menu-btn:hover{
@@ -160,6 +161,30 @@ h1{
 .orders-cont{
     background-color: #fff;
     padding: 20px;
+}
+.no-orders{
+    height: 100%;
+    width: 100%;
+}
+.n-o-h-c{
+    text-align: center;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+.n-o-h-c h2{
+    color: #303330;
+    letter-spacing: 2px;
+}
+.n-o-h-c a{
+    text-decoration: none;
+    color: #962D21;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+}
+.n-o-h-c a:hover{
+    color: #303330;
+    border-bottom: 1px solid #962D21;
 }
 .order{
     padding: 10px;

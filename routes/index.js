@@ -3,6 +3,7 @@ var router = express.Router();
 var Food = require("../models/food.js");
 var Cart = require("../models/cart.js");
 var Order = require("../models/orders.js");
+var Review = require("../models/review.js");
 var links = [
   {
     title: "HOME", link: "/", isactive: true
@@ -64,7 +65,7 @@ router.get('/menu', function(req, res) {
       link.isactive = false;
     }
   });
-  Food.find({}, function(err, products){
+  Food.find({}).populate("reviews").exec(function(err, products){
       if(err){
           console.log(err);
       }else{
@@ -111,6 +112,42 @@ router.get("/add-to-cart/:id", function(req, res){
         res.redirect("/menu");
       }
     });
+});
+router.get("/leave-review/:id", isLoggedIn, function(req, res){
+  req.flash("success", "Sorry for the delay, but now that your logged in, you can go back and leave your review.");
+  res.redirect("/menu");
+});
+
+router.post("/leave-review/:id", isLoggedIn, function(req, res){
+  console.log(req.body.star);
+  Food.findById(req.params.id, function(err, food){
+    if(err){
+      console.log("error");
+      req.flash("error", "Could not find that food item");
+      res.redirect("back");
+    }else{
+      Review.create({
+        text: req.body.comment,
+        stars: req.body.star
+      }, function(err, comment){
+        if(err){
+          console.log(err);
+          req.flash("error", "Something went wrong while trying to save your review");
+          res.redirect("back");
+        }else{
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          comment.author.email = req.user.email;
+          comment.save();
+          food.reviews.push(comment);
+          food.save();
+          req.flash("success", "Your review is saved!");
+          res.redirect("/menu");
+          console.log(comment);
+        }
+      });
+    }
+  });
 });
 
 router.get("/shopping-cart", function(req, res){
@@ -210,6 +247,7 @@ function isLoggedIn(req, res, next){
     }else{
       req.session.oldUrl = req.url;
       res.redirect("/user/login");
+      console.log(req.session.oldUrl);
     }
 }
 

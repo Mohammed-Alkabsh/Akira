@@ -32,82 +32,92 @@
                 <div class="menu-list-cont">
                     <ul class="profile-menu-list">
                         <li>
-                            <button class="menu-btn">
+                            <a class="menu-btn btn" href="#">
                                 <i class="left-icon fas fa-utensils"></i>
                                 <p>Orders</p>
                                 <i class="right-icon fas fa-angle-right"></i>
-                            </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="menu-btn">
+                            <a class="menu-btn btn" href="#">
                                 <i class="left-icon far fa-heart"></i>
                                 <p>Favorites</p>
                                 <i class="right-icon fas fa-angle-right"></i>
-                            </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="menu-btn">
+                            <a class="menu-btn btn" href="#">
                                 <i class="left-icon far fa-user"></i>
                                 <p>Edit Account</p>
                                 <i class="right-icon fas fa-angle-right"></i>
-                            </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="menu-btn">
+                            <a class="menu-btn btn" href="/user/logout">
                                 <i class="left-icon fas fa-sign-out-alt"></i>
                                 <p>Sign Out</p>
                                 <i class="right-icon fas fa-angle-right"></i>
-                            </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="orders-cont col-lg-8 col-md-12">
                 <h2>Orders</h2>
-                <% for( var i = orders.length - 1; i > -1 ; i-- ){%>
-                    <div class="order">
-                
-                        <div class="order-items">
-                            <div class="info-heading col-lg-12">
-                                <h4>Payment ID:</h4>
-                                <p><%= orders[i].paymentId %></p>
-                            </div>
-                            <% orders[i].items.forEach(function(order){%>
-                                <div class="item">
-                                    <img class="item-img" src="<%= order.item.image %>">
-                                    <div class="item-inner-cont">
-                                        <p><%= order.item.title %></p>
-                                    </div>
-                                    <div class="hidden-info">
-                                        <p id="title"><%= order.item.title %></p>
-                                        <p id="description"><%= order.item.description %></p>
-                                        <p id="price"><%= order.item.price %></p>
-                                        <p id="quantity"><%= order.qty %></p>
-                                        <p id="total"><%= order.price %></p>
-                                    </div>
+                <% if( orders.length > 0 ){%>
+                    <% for( var i = orders.length - 1; i > -1 ; i-- ){%>
+                        <div class="order">
+                    
+                            <div class="order-items">
+                                <div class="info-heading col-lg-12">
+                                    <h4>Payment ID:</h4>
+                                    <p><%= orders[i].paymentId %></p>
                                 </div>
-                            <% }) %>
+                                <% orders[i].items.forEach(function(order){%>
+                                    <div class="item">
+                                        <img class="item-img" src="<%= order.item.image %>">
+                                        <div class="item-inner-cont">
+                                            <p><%= order.item.title %></p>
+                                        </div>
+                                        <div class="hidden-info">
+                                            <p id="title"><%= order.item.title %></p>
+                                            <p id="description"><%= order.item.description %></p>
+                                            <p id="price"><%= order.item.price %></p>
+                                            <p id="quantity"><%= order.qty %></p>
+                                            <p id="total"><%= order.price %></p>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                            <div class="order-info row">
+                                <div id="date" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <p>Date</p>
+                                    <span>April 2, 2019</span>
+                                </div>
+                                <div id="quantity" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <p>Quantity</p>
+                                    <span><%= orders[i].cart.totalQty %></span>
+                                </div>
+                                <div id="total" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <p>Total</p>
+                                    <span><%= orders[i].cart.totalPrice %></span>
+                                </div>
+                                <div id="status" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                    <p>Time to Ready</p>
+                                    <span>30 min</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="order-info row">
-                            <div id="date" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                <p>Date</p>
-                                <span>April 2, 2019</span>
-                            </div>
-                            <div id="quantity" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                <p>Quantity</p>
-                                <span><%= orders[i].cart.totalQty %></span>
-                            </div>
-                            <div id="total" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                <p>Total</p>
-                                <span><%= orders[i].cart.totalPrice %></span>
-                            </div>
-                            <div id="status" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                <p>Time to Ready</p>
-                                <span>30 min</span>
-                            </div>
+                    <% }%>
+                <% }else{ %>
+                    <div class="no-orders">
+                        <div class="n-o-h-c">
+                            <h2>You haven't ordered anything yet</h2>
+                            <a href="/menu">MAKE ORDER</a>
                         </div>
+                        
                     </div>
-                <% }%>
+                <% } %>
             </div>
         </div>
     </div>

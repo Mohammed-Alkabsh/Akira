@@ -10,9 +10,7 @@ var reviewSchema = new mongoose.Schema({
         username: String,
         email: String,
     },
-    stars: {
-        number: Number
-    }
+    stars: Number
 });
 
 var Review = mongoose.model("Review", reviewSchema);

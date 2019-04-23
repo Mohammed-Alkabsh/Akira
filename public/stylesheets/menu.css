@@ -4,6 +4,219 @@
     padding: 50px 0;
     overflow: hidden;
 }
+
+#item-info{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    width: 100vw;
+    overflow-y: scroll;
+    z-index: 4;
+    padding: 100px 0;
+}
+#picked-item{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 2px 4px 8px;
+    background-color: #fff;
+    height: auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+#p-i-image{
+    background-image: url(https://media.blueapron.com/recipes/2658/square_newsletter_images/1512507588-1-0010-1330/1211_2PV2_Shiitake-Ramen_98006_SQ_hi_res.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+#p-i-close-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 1px solid #991D1D;
+    text-align: center;
+    font-size: 19px;
+    padding: 10px 15px;
+    background-color: #fff;
+    color: #991D1D;
+    transition: all 0.3s;
+}
+#p-i-close-btn:hover{
+    background-color: #991D1D;
+    color: #fff;
+}
+#p-i-image{
+    width: 100%;
+    height: 40vh;
+    background-image: url(https://i.redd.it/y2j3hm1mvtb21.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.p-i-h-c{
+    padding: 10px 0;
+    font-weight: bolder;
+    font-size: 23px;
+    height: 50px;
+}
+#p-i-h{
+    float: left;
+    font-weight: bolder;
+    color: #AA7C2C;
+}
+.p-i-price{
+    float: right;
+    color: #962D21;
+}
+
+
+#popup-d{
+    padding: 0;
+    font-size: 13px;
+    text-align: justify;
+    margin: 10px 0;
+}
+.add-to-cart, .leave-review{
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none !important;
+    transition: all 0.4s ease-in-out;
+}
+.add-to-cart{
+    background-color: #962D21;
+    color: #FFA100;
+}
+.add-to-cart:hover{
+    color: #962D21;
+    background-color: #FFA100;
+}
+.leave-review{
+    margin: 15px 0;
+    display: block;
+    width: 100%;
+    color: #fff;
+    background-color: #303330;
+}
+
+.leave-review:hover{
+    background-color: #f1f1f1;
+    color: #303330;
+}
+.hidden-review-form{
+    display: none;
+}
+
+
+.star{
+    color: gray;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.label-high, .star:hover{
+    color: #FFA100;
+}
+.r-c-v{
+    
+    background: #303330;
+    color: #fff;
+    width: auto;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: none;
+}
+.o-t{
+    position: relative;
+    top: -8px;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    
+    border-bottom: 10px solid #303330;
+}
+.r-c-v p{
+    font-size: 12px;
+}
+input[type="radio"]{
+    display: none;
+}
+textarea{
+    height: 100px;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: #303330;
+    color: #f5f5f5;
+    margin-bottom: 20px;
+}
+input[type="submit"]{
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: #F55D3E;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+input[type="submit"]:hover{
+    background-color: #FFA100;
+    letter-spacing: 3px;
+}
+.comment-cont{
+    height: auto;
+    width: 100%;
+    min-height: 100px;
+}
+.comment{
+    min-height: 80px;
+    height: auto;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #fff;
+}
+.user-name{
+    color: #991D1D;
+    font-weight: bold;
+    margin: 0;
+}
+.rating-cont{
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+}
+.rating-cont li{
+    display: inline-block;
+    font-size: 13px;
+}
+.user-comment{
+    padding: 0 20px;
+    font-size: 13px;
+    margin: 0;
+}
+.no-comments{
+    text-align: center;
+    color: #303330;
+}
+.no-comments h4 i{
+    color: #991D1D;
+}
+
+
+
+
 .container{
     overflow: hidden;
 }
@@ -107,17 +320,4 @@
 }
 .p-hovered{
     opacity: 1 !important;
-}
-.food-hidden-info a{
-    display: block;
-    background-color: #962D21;
-    color: #FFA100;
-    text-align: center;
-    padding: 10px 0;
-    text-decoration: none;
-    transition: all 0.4s ease-in-out;
-}
-.food-hidden-info a:hover{
-    color: #962D21;
-    background-color: #FFA100;
 }
