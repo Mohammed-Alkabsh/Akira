@@ -61,5 +61,5 @@ app.use('/', indexRouter);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
-  console.log("Your ecommerce app is online");
+  console.log("Your Restaurant app is online");
 });
