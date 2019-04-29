@@ -128,7 +128,11 @@ router.post("/leave-review/:id", isLoggedIn, function(req, res){
     }else{
       Review.create({
         text: req.body.comment,
-        stars: req.body.star
+        stars: req.body.star,
+        ITitle: req.body.ititle,
+        IImage: req.body.iimage,
+        IDescription: req.body.idescription,
+        IPrice: req.body.iprice
       }, function(err, comment){
         if(err){
           console.log(err);

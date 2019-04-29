@@ -34,6 +34,10 @@
                         <p>Please select one of these</p>
                     </div>
                     <textarea name="comment" placeholder="Comment..." required></textarea>
+                    <input type="hidden" name="ititle" value="Mouse">
+                    <input type="hidden" name="iimage" value="Mouse">
+                    <input type="hidden" name="iprice" value="Mouse">
+                    <input type="hidden" name="idescription" value="Mouse">
                     <input id="submit-btn" type="submit">
                 </form>
             </div>
@@ -97,7 +101,7 @@
                     </div>
                     <div class="food-name-and-price">
                         <p class="food-name"> <%= food.title %></p>
-                        <p class="food-price">$  <%= food.price %></p>
+                        <p class="food-price">$  <span><%= food.price %></span></p>
                     </div>
                     <div class="reviews">
                         
@@ -107,7 +111,7 @@
                     </div>
                     <div class="food-hidden-info">
                         <hr class="h-i-hr">
-                        <p class="food-descrition">
+                        <p class="food-description">
                              <%= food.description %>
                         </p>
                         <a class="add-to-cart" href="/add-to-cart/<%= food._id %>">ADD TO CART</a>

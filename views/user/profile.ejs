@@ -40,14 +40,14 @@
                         </li>
                         <li>
                             <a class="menu-btn btn" href="#">
-                                <i class="left-icon far fa-heart"></i>
-                                <p>Favorites</p>
+                                <i class="left-icon fas fa-star"></i>
+                                <p>Reviews</p>
                                 <i class="right-icon fas fa-angle-right"></i>
                             </a>
                         </li>
                         <li>
                             <a class="menu-btn btn" href="#">
-                                <i class="left-icon far fa-user"></i>
+                                <i class="left-icon fas fa-user"></i>
                                 <p>Edit Account</p>
                                 <i class="right-icon fas fa-angle-right"></i>
                             </a>
@@ -62,122 +62,143 @@
                     </ul>
                 </div>
             </div>
-            <div class="orders-cont col-lg-8 col-md-12">
-                <h2>Orders</h2>
-                <% if( orders.length > 0 ){%>
-                    <% for( var i = orders.length - 1; i > -1 ; i-- ){%>
-                        <div class="order">
+            <div class="filtered-containers col-lg-8 col-md-12">
+                <div class="row">
                     
-                            <div class="order-items">
-                                <div class="info-heading col-lg-12">
-                                    <h4>Payment ID:</h4>
-                                    <p><%= orders[i].paymentId %></p>
-                                </div>
-                                <% orders[i].items.forEach(function(order){%>
-                                    <div class="item">
-                                        <img class="item-img" src="<%= order.item.image %>">
-                                        <div class="item-inner-cont">
-                                            <p><%= order.item.title %></p>
+                
+                    <div class="orders-cont col-lg-12">
+                        <h2>Orders</h2>
+                        <% if( orders.length > 0 ){%>
+                            <% for( var i = orders.length - 1; i > -1 ; i-- ){%>
+                                <div class="order">
+                                    <div class="order-items">
+                                        <div class="info-heading col-lg-10">
+                                            <h4>Payment ID:</h4>
+                                            <p><%= orders[i].paymentId %></p>
                                         </div>
-                                        <div class="hidden-info">
-                                            <p id="title"><%= order.item.title %></p>
-                                            <p id="description"><%= order.item.description %></p>
-                                            <p id="price"><%= order.item.price %></p>
-                                            <p id="quantity"><%= order.qty %></p>
-                                            <p id="total"><%= order.price %></p>
+                                        <% orders[i].items.forEach(function(order){%>
+                                            <div class="item">
+                                                <img class="item-img" src="<%= order.item.image %>">
+                                                <div class="item-inner-cont">
+                                                    <p><%= order.item.title %></p>
+                                                </div>
+                                                <div class="hidden-info">
+                                                    <p id="title"><%= order.item.title %></p>
+                                                    <p id="description"><%= order.item.description %></p>
+                                                    <p id="price"><%= order.item.price %></p>
+                                                    <p id="quantity"><%= order.qty %></p>
+                                                    <p id="total"><%= order.price %></p>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                    <div class="order-info row">
+                                        <div id="date" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <p>Date</p>
+                                            <span>April 2, 2019</span>
+                                        </div>
+                                        <div id="quantity" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <p>Quantity</p>
+                                            <span><%= orders[i].cart.totalQty %></span>
+                                        </div>
+                                        <div id="total" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <p>Total</p>
+                                            <span><%= orders[i].cart.totalPrice %></span>
+                                        </div>
+                                        <div id="status" class="info col-lg-3 col-md-3 col-sm-6 col-6">
+                                            <p>Time to Ready</p>
+                                            <span>30 min</span>
                                         </div>
                                     </div>
-                                <% }) %>
+                                </div>
+                            <% }%>
+                        <% }else{ %>
+                            <div class="no-orders">
+                                <div class="n-o-h-c">
+                                    <h2>You haven't ordered anything yet</h2>
+                                    <a href="/menu">MAKE ORDER</a>
+                                </div>
+                                
                             </div>
-                            <div class="order-info row">
-                                <div id="date" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                    <p>Date</p>
-                                    <span>April 2, 2019</span>
-                                </div>
-                                <div id="quantity" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                    <p>Quantity</p>
-                                    <span><%= orders[i].cart.totalQty %></span>
-                                </div>
-                                <div id="total" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                    <p>Total</p>
-                                    <span><%= orders[i].cart.totalPrice %></span>
-                                </div>
-                                <div id="status" class="info col-lg-3 col-md-3 col-sm-6 col-6">
-                                    <p>Time to Ready</p>
-                                    <span>30 min</span>
-                                </div>
+                        <% } %>
+                    </div>
+                    <div class="reviews-cont col-lg-12">
+                        <h2>Reviews</h2>
+                        <% if( reviews.length > 0 ){ %>
+                            <div class="review-box">
+                                <% for( var i = reviews.length - 1; i > -1 ; i-- ){%>
+                                    <div class="review">
+                                        <h5><%= reviews[i].ITitle %></h5>
+                                        <div class="r-i-container">
+                                            <div style="background-image: url(<%= reviews[i].IImage %>);"class="r-i"></div>
+                                        </div>
+                                        <div class="stars-comments">
+                                            <ul class="rating-cont">
+                                                <% for( var j = 0; j < 5; j++ ) {%>
+                                                    <% if( j < reviews[i].stars ) { %>
+                                                        <li class="star-rating label-high"><i class="fas fa-star"></i></li>
+                                                    <% }else{ %>
+                                                        <li class="star-rating"><i class="fas fa-star"></i></li>
+                                                    <% } %>
+                                                <% } %>
+                                            </ul>
+                                            <div class="user-comment">
+                                                <p><%= reviews[i].text %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
                             </div>
-                        </div>
-                    <% }%>
-                <% }else{ %>
-                    <div class="no-orders">
-                        <div class="n-o-h-c">
-                            <h2>You haven't ordered anything yet</h2>
-                            <a href="/menu">MAKE ORDER</a>
+                        <% }else{ %>
+                            <div class="n-o-h-c">
+                                <h2>You haven't left any reviews</h2>
+                                <a href="/menu">MAKE REVIEW</a>
+                            </div>
+                        <% } %>
+                        
+                    </div>
+                    <div class="edit-account-cont col-lg-12">
+                        <h2>Edit Account</h2>
+                        <div class="edit-account-box">
+                            
+                                
+                            <form class="edit-email-form" action="/user/edit/email/<%= currentUser._id %>" method="POST">
+                                <h5>Change Your Email</h5>
+                                <input type="email" value="<%= currentUser.email %>" name="newEmail">
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
+                                <input type="submit">
+                            </form>
+                        
+                        
+                            <form class="edit-username-form" action="/user/edit/username/<%= currentUser._id %>" method="POST">
+                                <h5>Change Your Username</h5>
+                                <input type="text" value="<%= currentUser.username %>" name="newUsername">
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
+                                <input type="submit">
+                            </form>
+                            
+                            <form class="edit-password-form" action="/user/edit/password/<%= currentUser._id %>" method="POST">
+                                <h5>Change Your Password</h5>
+                                <input type="password" placeholder="Old Password" name="oldPassword">
+                                <input type="password" placeholder="New Password" name="newPassword">
+                                <input type="password" placeholder="Confirm Password" name="confirmPassword">
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
+                                <input type="submit">
+                            </form>
+                            
+                            <form class="delete-account-form" action="/user/delete/<%= currentUser._id %>" method="POST">
+                                <h5>Delete Account</h5>
+                                <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
+                                <button>DELETE ACCOUNT</button>
+                            </form>
+                                
+                            
                         </div>
                         
                     </div>
-                <% } %>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<!--
-<div id="profile">
-    <div class="container">
-        <h1>User Profile</h1>
-        <hr>
-        <h2>Heres all your orders <%= currentUser.username %></h2>
-        <div class="row">
-            <div class="col-lg-8 col-md-10 col-sm-10 col-12">
-                <% orders.forEach(function(order){ %>
-                    
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <p>Name: <%= order.name %> </p>
-                                </li>
-                                <li class="list-group-item">
-                                    <p>Address: <%= order.address %> </p>
-                                </li>
-                                <li class="list-group-item">
-                                    <p>Payment ID: <%= order.paymentId %> </p>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                    
-                                            <% order.items.forEach(function(order){%>
-                                              
-                                                <div class="card col-lg-6 col-md-6 col-sm-10 col-12" style="width: 18rem;">
-                                                  <img src="<%= order.item.image %>" class="card-img-top" alt="<%= order.item.title %>">
-                                                  <div class="card-body">
-                                                    <h5 class="card-title"><%= order.item.title %></h5>
-                                                    <p class="card-text"><%= order.item.description %></p>
-                                                    <p class="card-text">Price: $<%= order.item.price %></p>
-                                                    <p class="card-text">Quantity: <%= order.qty %></p>
-                                                    <p class="card-text">Total Price: $<%= order.price %></p>
-                                                  </div>
-                                                </div>
-                                            <% }) %>
-                                    
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <p>Total Quantity: <%= order.cart.totalQty %> </p>
-                                    <p>Total Order Price: <%= order.cart.totalPrice %> </p>
-                                </li>
-                                
-                                
-                            </ul>
-                        </li>
-                    </ul>
-                <% }) %>
-            </div>  
-        </div>
-    </div>
-</div>
--->
 <% include ../partials/footer %>

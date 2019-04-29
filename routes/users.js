@@ -3,8 +3,10 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user.js");
 var Order = require("../models/orders.js");
+var Review = require("../models/review.js");
 var Product = require("../models/food.js");
 var Cart = require("../models/cart.js");
+var methodOverride = require("method-override");
 var csrf = require("csurf");
 var { check, validationResult } = require('express-validator/check');
 
@@ -61,11 +63,22 @@ router.get("/profile", isLoggedIn, function(req, res){
                 order.items = cart.generateArray();
             });
             
-            res.render("user/profile", {
-                orders: orders,
-                style: "/stylesheets/profile.css",
-                script: "/javascripts/profile.js",
-                links: links
+            Review.find({author: {email: req.user.email, id: req.user._id, username: req.user.username}}, function(err, reviews){
+                if(err){
+                    console.log(err);
+                    req.flash("error", "Something went wrong while trying to find all your reviews");
+                    res.redirect("back");
+                }else{
+                    console.log(reviews)
+                    res.render("user/profile", {
+                        orders: orders,
+                        csrfToken: req.csrfToken(),
+                        reviews: reviews,
+                        style: "/stylesheets/profile.css",
+                        script: "/javascripts/profile.js",
+                        links: links
+                    });
+                }
             });
         }
     });
@@ -162,6 +175,81 @@ router.get("/logout", isLoggedIn, function(req, res){
     req.flash("success", "You are now logged out");
     res.redirect("/");
 });
+
+router.post("/edit/email/:id", isLoggedIn, function(req, res){
+    console.log(req.body.newEmail);
+    User.findOneAndUpdate({_id: req.params.id}, {email: req.body.newEmail}, function(err, user){
+        if(err){
+            console.log(err);
+            req.flash("error", "Something went wrong, we'll fix it as soon as possible.");
+            res.redirect("back");
+        }else{
+            user.save();
+            req.flash("success", "Your email has been successfully updated.");
+            res.redirect("back");
+        }
+    });
+    console.log(req.user);
+});
+
+router.post("/edit/username/:id", isLoggedIn, function(req, res){
+    
+    User.findOneAndUpdate({_id: req.params.id}, {username: req.body.newUsername}, function(err, user){
+        if(err){
+            console.log(err);
+            req.flash("error", "We're sorry, we couldn't update your username at this time");
+            res.redirect("back");
+        }else{
+            user.save();
+            req.flash("success", "Your username has been successfully updated, log back in with your new username to access your account.");
+            res.redirect("/user/login");
+        }
+    });
+});
+
+router.post("/edit/password/:id", isLoggedIn, function(req, res){
+    var oldPassword = req.body.oldPassword,
+        newPassword = req.body.newPassword,
+        confirmPassword = req.body.confirmPassword;
+        
+    User.findById(req.user._id, function(err, user){
+        if(err){
+            console.log(err);
+            req.flash("error", "Sorry but we couldn't find you for some reason...");
+            res.redirect("back");
+        }else{
+            if( newPassword === confirmPassword ){
+                user.changePassword(oldPassword, newPassword, function(err, result){
+                    if(err){
+                        console.log(err);
+                        req.flash("error", "We're sorry but we could not change your password at this time.");
+                        res.redirect("back");
+                    }else{
+                        req.flash("success", "Your password has been changed.");
+                        res.redirect("back");
+                    }
+                })
+            }else{
+                req.flash("error", "Your new password could not be confirmed, please make sure you confirm the exact password.");
+                res.redirect("back");
+            }
+            
+        }
+    })
+});
+
+router.post("/delete/:id", isLoggedIn, function(req, res){
+    User.findOneAndDelete({_id: req.params.id}, function(err, result){
+        if(err){
+            console.log(err);
+            req.flash("error", "We're sorry but we couldn't delete your account at this time.");
+            res.redirect("back");
+        }else{
+            req.flash("success", "Your account is now deleted");
+            res.redirect("/");
+        }
+    })
+})
 
 
 function isLoggedIn(req, res, next){
