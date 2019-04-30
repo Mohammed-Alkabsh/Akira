@@ -19,7 +19,7 @@ var usersRouter = require('./routes/users');
 
 
 //Mongoose Connect
-mongoose.connect("mongodb://localhost/sushibar", {useNewUrlParser: true});
+mongoose.connect(process.env.DATAURL, {useNewUrlParser: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

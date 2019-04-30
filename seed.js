@@ -3,7 +3,7 @@ var Food = require("./models/food.js");
 
 
 //Mongoose Connect
-mongoose.connect("mongodb://localhost/sushibar", {useNewUrlParser: true});
+mongoose.connect(process.env.DATAURL, {useNewUrlParser: true});
 
 var menu = {
     breakfast: [

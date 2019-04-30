@@ -210,7 +210,7 @@ router.post("/checkout", isLoggedIn, function(req,res){
   }
   var cart = new Cart(req.session.cart);
   
-  var stripe = require("stripe")("sk_test_fTrCR1YxeaiRc3k4Os8S0JOa");
+  var stripe = require("stripe")(process.env.STRIPEKEY);
   
   stripe.charges.create({
     amount: Math.round(cart.totalPrice) * 100,
