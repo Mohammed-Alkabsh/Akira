@@ -16,11 +16,10 @@ var User = require("./models/user.js");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+console.log(process.env.STRIPEKEY);
 
 //Mongoose Connect
 mongoose.connect(process.env.DATAURL, {useNewUrlParser: true});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

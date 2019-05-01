@@ -13,6 +13,7 @@ var { check, validationResult } = require('express-validator/check');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
+//Showing which page your on with the navigation menu
 var links = [
   {
     title: "HOME", link: "/", isactive: true
@@ -43,7 +44,7 @@ router.get('/', function(req, res, next) {
 
 
 
-
+//Go to the users profile if they're logged in
 router.get("/profile", isLoggedIn, function(req, res){
     links.forEach(function(link){
         if( link.title === "USER"){
@@ -69,7 +70,7 @@ router.get("/profile", isLoggedIn, function(req, res){
                     req.flash("error", "Something went wrong while trying to find all your reviews");
                     res.redirect("back");
                 }else{
-                    console.log(reviews)
+                    console.log(reviews);
                     res.render("user/profile", {
                         orders: orders,
                         csrfToken: req.csrfToken(),
@@ -84,6 +85,7 @@ router.get("/profile", isLoggedIn, function(req, res){
     });
 });
 
+//Go To Sign Up Page
 router.get("/signup", isLoggedout, function(req, res){
     links.forEach(function(link){
         if( link.title === "USER"){
@@ -101,6 +103,7 @@ router.get("/signup", isLoggedout, function(req, res){
     });
 });
 
+//User Sign Up Functionality
 router.post("/signup", [
     check("email").isEmail(),
     check("password").isLength({ min: 5 })
@@ -138,6 +141,7 @@ router.post("/signup", [
     });
 });
 
+//Go To Login Page
 router.get("/login", isLoggedout, function(req, res){
     links.forEach(function(link){
         if( link.title === "USER"){
@@ -155,6 +159,7 @@ router.get("/login", isLoggedout, function(req, res){
     });
 });
 
+//User Login Functionality
 router.post("/login", passport.authenticate("local", {
     failureRedirect: "/user/login",
     failureFlash: true
@@ -170,12 +175,14 @@ router.post("/login", passport.authenticate("local", {
     }
 });
 
+//User Logout Functionality
 router.get("/logout", isLoggedIn, function(req, res){
     req.logout();
     req.flash("success", "You are now logged out");
     res.redirect("/");
 });
 
+//Change User Email Functionality
 router.post("/edit/email/:id", isLoggedIn, function(req, res){
     console.log(req.body.newEmail);
     User.findOneAndUpdate({_id: req.params.id}, {email: req.body.newEmail}, function(err, user){
@@ -192,6 +199,7 @@ router.post("/edit/email/:id", isLoggedIn, function(req, res){
     console.log(req.user);
 });
 
+//Change User Username Functionality
 router.post("/edit/username/:id", isLoggedIn, function(req, res){
     
     User.findOneAndUpdate({_id: req.params.id}, {username: req.body.newUsername}, function(err, user){
@@ -207,6 +215,7 @@ router.post("/edit/username/:id", isLoggedIn, function(req, res){
     });
 });
 
+//Change User Password Functionality
 router.post("/edit/password/:id", isLoggedIn, function(req, res){
     var oldPassword = req.body.oldPassword,
         newPassword = req.body.newPassword,
@@ -228,16 +237,17 @@ router.post("/edit/password/:id", isLoggedIn, function(req, res){
                         req.flash("success", "Your password has been changed.");
                         res.redirect("back");
                     }
-                })
+                });
             }else{
                 req.flash("error", "Your new password could not be confirmed, please make sure you confirm the exact password.");
                 res.redirect("back");
             }
             
         }
-    })
+    });
 });
 
+//Delete User Account Functionality
 router.post("/delete/:id", isLoggedIn, function(req, res){
     User.findOneAndDelete({_id: req.params.id}, function(err, result){
         if(err){
@@ -248,8 +258,9 @@ router.post("/delete/:id", isLoggedIn, function(req, res){
             req.flash("success", "Your account is now deleted");
             res.redirect("/");
         }
-    })
-})
+    });
+});
+
 
 
 function isLoggedIn(req, res, next){

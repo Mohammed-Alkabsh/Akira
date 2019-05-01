@@ -242,6 +242,45 @@ router.post("/checkout", isLoggedIn, function(req,res){
     }
   });
 });
+
+
+
+//=======================================EDIT AND DELETE REVIEWS ROUTES===========================================
+
+router.post("/review/edit/:id", function(req, res){
+    Review.findById(req.params.id, function(err, review){
+        if(err){
+            console.log(err);
+            req.flash("error", "Sorry we could not find that review");
+            res.redirect("back");
+        }else{
+            review.text = req.body.comment;
+            review.stars = req.body.star;
+            review.save();
+            req.flash("success", "your review has been updated.");
+            res.redirect("back");
+        }
+    });
+});
+router.post("/review/delete/:id", function(req, res){
+    Review.findOneAndDelete({_id: req.params.id}, function(err, review){
+        if(err){
+            console.log(err);
+            req.flash("error", "We're sorry but we couldn't delete your review at this time.");
+            res.redirect("back");
+        }else{
+            req.flash("success", "Your review has been deleted");
+            res.redirect("back");
+        }
+    });
+});
+
+
+
+
+
+
+
 module.exports = router;
 
 

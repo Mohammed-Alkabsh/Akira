@@ -1,6 +1,6 @@
 #Profile{
     min-height: 100vh;
-    padding: 142px 0;
+    padding: 142px 0 0 0;
 }
 #item-info{
     position: absolute;
@@ -93,9 +93,9 @@ h1{
     letter-spacing: 2px;
 }
 .profile-menu{
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     background-color: #fff;
-    margin-right: 50px;
+    margin: 0 auto;
 }
 .profile-menu h4 span{
     color: #962D21;
@@ -134,9 +134,13 @@ h1{
     border-right: 10px solid #962D21;
     transition: all 0.3s;
 }
-.menu-btn:hover{
+.menu-btn:hover, .active-menu-btn{
     background-color: #962D21;
     color: #FFF;
+}
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
 }
 .left-icon{
     position: relative;
@@ -155,11 +159,12 @@ h1{
     font-size: 18px;
 }
 .orders-cont, .reviews-cont, .edit-account-cont{
+    display: none;
     background-color: #fff;
     padding: 20px;
     min-height: 70vh;
 }
-.orders-cont h2, .reviews-cont h2 .edit-account-cont h2{
+.orders-cont h2, .reviews-cont h2, .edit-account-cont h2{
     font-weight: bold;
     color: #303330;
 }
@@ -318,19 +323,114 @@ h1{
     margin: 0;
 }
 
-form{
+
+
+.edit-delete-review{
+    padding: 0 0px 0px 20px;
+}
+
+.edit-delete-btns form, .edit-review{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.e-r-b{
+    width: auto;
+    padding: 5px 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #991D1D;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.e-r-b:hover, .edit-review:hover{
+    background-color: #303330;
+}
+.edit-review{
+    background-color: #FFA100;
+}
+.edit-delete-btns form button{
+    width: 100%;
+}
+.hidden-edit-form{
+    display: none;
+}
+.star{
+    color: gray;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.label-high, .star:hover{
+    color: #FFA100;
+}
+.r-c-v{
+    
+    background: #303330;
+    color: #fff;
+    width: auto;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: none;
+}
+.o-t{
+    position: relative;
+    top: -8px;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    
+    border-bottom: 10px solid #303330;
+}
+.r-c-v p{
+    font-size: 12px;
+}
+input[type="radio"]{
+    display: none;
+}
+textarea{
+    height: 100px;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: #303330;
+    color: #f5f5f5;
+    margin-bottom: 20px;
+}
+input[type="submit"]{
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: #F55D3E;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+input[type="submit"]:hover{
+    background-color: #FFA100;
+    letter-spacing: 3px;
+}
+
+
+
+
+
+.account-form{
     margin: 10px 0;
     width: 100%;
     background-color: #f1f1f1;
     padding: 30px 10px;
 }
-form h5{
+.account-form h5{
     color: #962D21;
     text-align: center;
     font-weight: bolder;
     margin-bottom: 30px;
 }
-form input, form button{
+.account-form input, .account-form button{
     display: block;
     margin: 5px auto;
     color: #962D21;
@@ -339,10 +439,10 @@ form input, form button{
     width: 100%;
     padding: 5px 10px;
 }
-form input:focus{
+.account-form input:focus{
     outline-color: #FFA100;
 }
-form input[type="submit"], form button{
+.account-form input[type="submit"], .account-form button{
     text-transform: uppercase;
     color: #fff;
     font-weight: bolder;
@@ -352,7 +452,7 @@ form input[type="submit"], form button{
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-form input[type="submit"]:hover, form button:hover{
+.account-form input[type="submit"]:hover, .account-form button:hover{
     background-color: #962D21;
 }
 ::placeholder{

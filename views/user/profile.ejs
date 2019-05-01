@@ -7,7 +7,7 @@
             <button id="p-i-close-btn"><i class="fas fa-times"></i></button>
             <div id="p-i-image"></div>
             <h4 id="p-i-h">Tasty Food</h4>
-            <p id="popup-d">Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr!Dopest of the Dopest food everrrrrr</p>
+            <p id="popup-d"></p>
             <div id="i-o-s-i">
                 <div class="i-o-s-i-p">
                     <p>Price : </p>
@@ -27,26 +27,26 @@
     <div class="container">
         <h1>My account</h1>
         <div class="row top-row">
-            <div class="profile-menu col-lg-3 col-md-12">
+            <div class="profile-menu col-lg-4 col-md-12">
                 <h4>Welcome, <span><%= currentUser.username %></span></h4>
                 <div class="menu-list-cont">
                     <ul class="profile-menu-list">
                         <li>
-                            <a class="menu-btn btn" href="#">
+                            <a id="orders-btn" class="menu-btn btn" href="#">
                                 <i class="left-icon fas fa-utensils"></i>
                                 <p>Orders</p>
                                 <i class="right-icon fas fa-angle-right"></i>
                             </a>
                         </li>
                         <li>
-                            <a class="menu-btn btn" href="#">
+                            <a id="reviews-btn" class="menu-btn btn" href="#">
                                 <i class="left-icon fas fa-star"></i>
                                 <p>Reviews</p>
                                 <i class="right-icon fas fa-angle-right"></i>
                             </a>
                         </li>
                         <li>
-                            <a class="menu-btn btn" href="#">
+                            <a id="account-btn" class="menu-btn btn" href="#">
                                 <i class="left-icon fas fa-user"></i>
                                 <p>Edit Account</p>
                                 <i class="right-icon fas fa-angle-right"></i>
@@ -145,6 +145,35 @@
                                             <div class="user-comment">
                                                 <p><%= reviews[i].text %></p>
                                             </div>
+                                            <div class="edit-delete-review">
+                                                <div class="edit-delete-btns">
+                                                    <button class="e-r-b edit-review">Edit</button>
+                                                    <form action="/review/delete/<%= reviews[i]._id%>" method="POST">
+                                                        <button class="e-r-b">Delete</button>
+                                                    </form>
+                                                </div>
+                                                <form class="hidden-edit-form" action="/review/edit/<%= reviews[i]._id%>" method="POST">
+                                                    <hr>
+                                                    <div class="stars-cont">
+                                                        <label class="star" for="<%= reviews[i]._id%>-one-star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="<%= reviews[i]._id%>-one-star" name="star" value="1" required>
+                                                        <label class="star" for="<%= reviews[i]._id%>-two-star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="<%= reviews[i]._id%>-two-star" name="star" value="2" required>
+                                                        <label class="star" for="<%= reviews[i]._id%>-three-star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="<%= reviews[i]._id%>-three-star" name="star" value="3" required>
+                                                        <label class="star" for="<%= reviews[i]._id%>-four-star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="<%= reviews[i]._id%>-four-star" name="star" value="4" required>
+                                                        <label class="star" for="<%= reviews[i]._id%>-five-star"><i class="fas fa-star"></i></label>
+                                                        <input type="radio" id="<%= reviews[i]._id%>-five-star" name="star" value="5" required>
+                                                    </div>
+                                                    <div class="r-c-v">
+                                                        <div class="o-t"></div>
+                                                        <p>Please select one of these</p>
+                                                    </div>
+                                                    <textarea name="comment" placeholder="<%= reviews[i].text %>" required></textarea>
+                                                    <input class="submit-btn" type="submit">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 <% } %>
@@ -162,7 +191,7 @@
                         <div class="edit-account-box">
                             
                                 
-                            <form class="edit-email-form" action="/user/edit/email/<%= currentUser._id %>" method="POST">
+                            <form class="account-form edit-email-form" action="/user/edit/email/<%= currentUser._id %>" method="POST">
                                 <h5>Change Your Email</h5>
                                 <input type="email" value="<%= currentUser.email %>" name="newEmail">
                                 <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
@@ -170,14 +199,14 @@
                             </form>
                         
                         
-                            <form class="edit-username-form" action="/user/edit/username/<%= currentUser._id %>" method="POST">
+                            <form class="account-form edit-username-form" action="/user/edit/username/<%= currentUser._id %>" method="POST">
                                 <h5>Change Your Username</h5>
                                 <input type="text" value="<%= currentUser.username %>" name="newUsername">
                                 <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
                                 <input type="submit">
                             </form>
                             
-                            <form class="edit-password-form" action="/user/edit/password/<%= currentUser._id %>" method="POST">
+                            <form class="account-form edit-password-form" action="/user/edit/password/<%= currentUser._id %>" method="POST">
                                 <h5>Change Your Password</h5>
                                 <input type="password" placeholder="Old Password" name="oldPassword">
                                 <input type="password" placeholder="New Password" name="newPassword">
@@ -186,7 +215,7 @@
                                 <input type="submit">
                             </form>
                             
-                            <form class="delete-account-form" action="/user/delete/<%= currentUser._id %>" method="POST">
+                            <form class="account-form delete-account-form" action="/user/delete/<%= currentUser._id %>" method="POST">
                                 <h5>Delete Account</h5>
                                 <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
                                 <button>DELETE ACCOUNT</button>
