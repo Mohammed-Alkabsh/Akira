@@ -1,2 +1,36 @@
 <% include partials/header %>
+
+<div id="Contact">
+    <div class="container">
+        <div class="row section">
+            <h2 class="col-lg-12">LOCATION</h2>
+            <div class="col-lg-12" id="map"></div>
+        </div>
+        <div class="row">
+            <div class="how-to-find col-lg-4 col-md-4 col-sm-12">
+                <h2>HOW TO FIND US</h2>
+                <p>Vestibulum iaculis lacinia est. Proin dictum elementum velit. 
+                Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui.</p>
+                <p class="dark-text">Aenean nonum hendrerit mauris. Fusce suscipit varius mi. Cum sociis natoque 
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. 
+                Fusce feugiat malesuada odio.</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <h2>CONTACT FORM</h2>
+                <form action="/contact" method="POST">
+                    <div class="input-div">
+                        <input type="text" placeholder="Name" name="name" required>
+                        <input type="text" placeholder="Email" name="email" required>
+                        <input type="tel" placeholder="Phone" name="phone" required>
+                    </div>
+                    <textarea placeholder="Message" name="message" required></textarea>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6lAk86JB-FIWgXWZtPRnr32Prrfuh43M&callback=initMap"></script>
 <% include partials/footer %>

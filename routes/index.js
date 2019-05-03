@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require("nodemailer");
 var Food = require("../models/food.js");
 var Cart = require("../models/cart.js");
 var Order = require("../models/orders.js");
@@ -93,6 +94,57 @@ router.get("/contact", function(req, res){
       links: links
     });
 });
+
+router.post("/contact", function(req, res){
+  var name = req.body.name,
+      email = req.body.email,
+      phone = req.body.phone,
+      message = req.body.message;
+      
+  const output = `
+    <p>You have a new contact</p>
+    <h3>Contact Details:</h3>
+    <ul>
+      <li>Name: ${name}</li>
+      <li>Email: ${email}</li>
+      <li>Phone: ${phone}</li>
+    </ul>
+    <h4>Message: </h4>
+    <p>${message}</p>
+    `;
+    
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "naturekingwebsite@gmail.com", // generated ethereal user
+          pass: "natureking#1" // generated ethereal password
+        }
+    });
+    
+    let mailOptions = {
+        from: '"Nature King Job Request" <naturekingwebsite@gmail.com>', // sender address
+        to: "alkabsh_mohammed@yahoo.com", // list of receivers
+        subject: "New Message From Restaurant Website", // Subject line
+        text: "Hello world?", // plain text body
+        html: output // html body
+    };
+    transporter.sendMail(mailOptions, function(err, info){
+        if(err){
+            req.flash("error", "We're sorry but your message wasn't sent properly");
+            res.redirect("back");
+            return console.log(err);
+        }
+        console.log("Message sent: %s", info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        req.flash("success", "Your message has been sent and we will contact you soon!");
+        res.redirect("back");
+    });
+      
+  
+})
 
 
 router.get("/add-to-cart/:id", function(req, res){
