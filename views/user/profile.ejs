@@ -208,9 +208,9 @@
                             
                             <form class="account-form edit-password-form" action="/user/edit/password/<%= currentUser._id %>" method="POST">
                                 <h5>Change Your Password</h5>
-                                <input type="password" placeholder="Old Password" name="oldPassword">
-                                <input type="password" placeholder="New Password" name="newPassword">
-                                <input type="password" placeholder="Confirm Password" name="confirmPassword">
+                                <input type="password" placeholder="Old Password" name="oldPassword" required>
+                                <input type="password" placeholder="New Password" name="newPassword" required>
+                                <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
                                 <input type="hidden" name="_csrf" value="<%=csrfToken%>" minLength="5" maxLength="15" required>
                                 <input type="submit">
                             </form>

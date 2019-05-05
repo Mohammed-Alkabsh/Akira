@@ -6,7 +6,7 @@
     <div id="Shopping-cart">
         <div class="container">
             <div class="row shopping-cart-wrapper">
-                <% if( products != null) { %>
+                <% if( products != null ) { %>
                     <div class="shopping-cart-items col-xl-9 col-lg-12">
                         <h2>YOUR ITEM'S</h2>
                         <% for( var i = 0; i < products.length; i++){ %>
@@ -19,16 +19,16 @@
                                     <p><%= products[i].item.description %></p>
                                 </div>
                                 <div class="cart-item-price">
-                                    <p><span>$</span><%= products[i].price %></p>
+                                    <p><span>$</span><%= products[i].price.toFixed(2) %></p>
                                 </div>
                                 <div class="cart-item-buttons">
                                     <div class="quantity-buttons">
-                                        <a id="add" href="#">+</a>
+                                        <a id="add" href="/add/item/<%=products[i].item._id%>">+</a>
                                         <div id="subtract" class="quantity-amount"><%=products[i].qty%></div>
-                                        <a href="#">-</a>
+                                        <a href="/reduce/item/<%=products[i].item._id%>">-</a>
                                     </div>
                                     <div class="delete-button">
-                                        <a href="#"><i class="fas fa-times"></i></a>
+                                        <a href="/remove/item/<%=products[i].item._id%>"><i class="fas fa-times"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                 <% } else{ %>
                     <div class="no-items-cont col-lg-12 col-md-12 col-sm-12 col-12" style="margin: 0 auto">
                         <h2>YOU HAVEN'T SELECTED ANY ITEMS</h2>
-                        <p>Go to the <a href="/menu"><strong>menu</strong></a> to make your selections.</p>
+                        <p><a href="/menu"><strong>Go to the menu to make your selections.</strong></a> </p>
                     </div>
                     
                 <% } %>

@@ -66,11 +66,9 @@ router.get("/profile", isLoggedIn, function(req, res){
             
             Review.find({author: {email: req.user.email, id: req.user._id, username: req.user.username}}, function(err, reviews){
                 if(err){
-                    console.log(err);
                     req.flash("error", "Something went wrong while trying to find all your reviews");
                     res.redirect("back");
                 }else{
-                    console.log(reviews);
                     res.render("user/profile", {
                         orders: orders,
                         csrfToken: req.csrfToken(),
@@ -123,7 +121,6 @@ router.post("/signup", [
     });
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
             req.flash("error", err.message);
             return res.redirect("back");
         }
@@ -184,11 +181,9 @@ router.get("/logout", isLoggedIn, function(req, res){
 
 //Change User Email Functionality
 router.post("/edit/email/:id", isLoggedIn, function(req, res){
-    console.log(req.body.newEmail);
     User.findOneAndUpdate({_id: req.params.id}, {email: req.body.newEmail}, function(err, user){
         if(err){
-            console.log(err);
-            req.flash("error", "Something went wrong, we'll fix it as soon as possible.");
+            req.flash("error", "" + err.name + " : " + err.message);
             res.redirect("back");
         }else{
             user.save();
@@ -204,8 +199,7 @@ router.post("/edit/username/:id", isLoggedIn, function(req, res){
     
     User.findOneAndUpdate({_id: req.params.id}, {username: req.body.newUsername}, function(err, user){
         if(err){
-            console.log(err);
-            req.flash("error", "We're sorry, we couldn't update your username at this time");
+            req.flash("error", "" + err.name + " : " + err.message);
             res.redirect("back");
         }else{
             user.save();
@@ -223,15 +217,13 @@ router.post("/edit/password/:id", isLoggedIn, function(req, res){
         
     User.findById(req.user._id, function(err, user){
         if(err){
-            console.log(err);
-            req.flash("error", "Sorry but we couldn't find you for some reason...");
+            req.flash("error", "" + err.name + " : " + err.message);
             res.redirect("back");
         }else{
             if( newPassword === confirmPassword ){
                 user.changePassword(oldPassword, newPassword, function(err, result){
                     if(err){
-                        console.log(err);
-                        req.flash("error", "We're sorry but we could not change your password at this time.");
+                        req.flash("error", "" + err.name + " : " + err.message);
                         res.redirect("back");
                     }else{
                         req.flash("success", "Your password has been changed.");
@@ -239,7 +231,7 @@ router.post("/edit/password/:id", isLoggedIn, function(req, res){
                     }
                 });
             }else{
-                req.flash("error", "Your new password could not be confirmed, please make sure you confirm the exact password.");
+                req.flash("error", "" + err.name + " : " + err.message);
                 res.redirect("back");
             }
             
@@ -251,8 +243,7 @@ router.post("/edit/password/:id", isLoggedIn, function(req, res){
 router.post("/delete/:id", isLoggedIn, function(req, res){
     User.findOneAndDelete({_id: req.params.id}, function(err, result){
         if(err){
-            console.log(err);
-            req.flash("error", "We're sorry but we couldn't delete your account at this time.");
+            req.flash("error", "" + err.name + " : " + err.message);
             res.redirect("back");
         }else{
             req.flash("success", "Your account is now deleted");

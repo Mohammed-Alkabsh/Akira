@@ -68,7 +68,8 @@ router.get('/menu', function(req, res) {
   });
   Food.find({}).populate("reviews").exec(function(err, products){
       if(err){
-          console.log(err);
+          req.flash("error", "" + err.name + " : " + err.message);
+          res.redirect("back");
       }else{
           res.render("menu", {
             products: products,
@@ -134,7 +135,6 @@ router.post("/contact", function(req, res){
         if(err){
             req.flash("error", "We're sorry but your message wasn't sent properly");
             res.redirect("back");
-            return console.log(err);
         }
         console.log("Message sent: %s", info.messageId);
         // Preview only available when sending through an Ethereal account
@@ -159,12 +159,36 @@ router.get("/add-to-cart/:id", function(req, res){
       }else{
         cart.add(result, productId);
         req.session.cart = cart;
-        console.log(req.session.cart);
         req.flash("success", "Your item is saved!");
         res.redirect("/menu");
       }
     });
 });
+
+router.get("/add/item/:id", function(req, res){
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart: {});
+  cart.addByOne(productId);
+  req.session.cart = cart;
+  res.redirect("back");
+});
+
+router.get("/reduce/item/:id", function(req, res){
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart: {});
+  cart.reduceByOne(productId);
+  req.session.cart = cart;
+  res.redirect("back");
+});
+
+router.get("/remove/item/:id", function(req, res){
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart: {});
+  cart.removeItem(productId);
+  req.session.cart = cart;
+  res.redirect("back");
+});
+
 router.get("/leave-review/:id", isLoggedIn, function(req, res){
   req.flash("success", "Sorry for the delay, but now that your logged in, you can go back and leave your review.");
   res.redirect("/menu");
@@ -174,7 +198,6 @@ router.post("/leave-review/:id", isLoggedIn, function(req, res){
   console.log(req.body.star);
   Food.findById(req.params.id, function(err, food){
     if(err){
-      console.log("error");
       req.flash("error", "Could not find that food item");
       res.redirect("back");
     }else{
@@ -187,7 +210,6 @@ router.post("/leave-review/:id", isLoggedIn, function(req, res){
         IPrice: req.body.iprice
       }, function(err, comment){
         if(err){
-          console.log(err);
           req.flash("error", "Something went wrong while trying to save your review");
           res.redirect("back");
         }else{
@@ -214,7 +236,7 @@ router.get("/shopping-cart", function(req, res){
       link.isactive = false;
     }
   });
-  if(!req.session.cart){
+  if(!req.session.cart || req.session.cart.totalQty === 0){
     return res.render("shopping-cart", {
       products: null,
       style: "/stylesheets/shopping-cart.css",
@@ -224,7 +246,6 @@ router.get("/shopping-cart", function(req, res){
     });
   }
   var cart = new Cart(req.session.cart);
-  console.log(cart.generateArray());
   res.render("shopping-cart", {
     products: cart.generateArray(), 
     totalPrice: cart.totalPrice,
@@ -265,7 +286,7 @@ router.post("/checkout", isLoggedIn, function(req,res){
   var stripe = require("stripe")(process.env.STRIPEKEY);
   
   stripe.charges.create({
-    amount: Math.round(cart.totalPrice) * 100,
+    amount: Math.round(cart.totalPrice.toFixed(2)) * 100,
     currency: 'usd',
     description: 'Customer charge',
     source: req.body.stripeToken,
@@ -302,7 +323,6 @@ router.post("/checkout", isLoggedIn, function(req,res){
 router.post("/review/edit/:id", function(req, res){
     Review.findById(req.params.id, function(err, review){
         if(err){
-            console.log(err);
             req.flash("error", "Sorry we could not find that review");
             res.redirect("back");
         }else{
@@ -317,7 +337,6 @@ router.post("/review/edit/:id", function(req, res){
 router.post("/review/delete/:id", function(req, res){
     Review.findOneAndDelete({_id: req.params.id}, function(err, review){
         if(err){
-            console.log(err);
             req.flash("error", "We're sorry but we couldn't delete your review at this time.");
             res.redirect("back");
         }else{
@@ -342,7 +361,6 @@ function isLoggedIn(req, res, next){
     }else{
       req.session.oldUrl = req.url;
       res.redirect("/user/login");
-      console.log(req.session.oldUrl);
     }
 }
 
