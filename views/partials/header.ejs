@@ -41,9 +41,22 @@
             <li class="nav-item">
               <% if( link.isactive === true ){ %>
                 <% if( link.title === "USER" ){ %>
-                  <a class="active" href="<%=link.link%>"><span><i class="fas fa-user"></i> <i class="fas fa-caret-down"></i></span></a>
+                  <a class="active nav-link user-link" href="<%=link.link%>"><span><i class="fas fa-user"></i> <i class="fas fa-caret-down"></i></span></a>
+                  <div class="hidden-user-links">
+                    <ul class="hidden-user-link-list">
+                      <% if( currentUser ){ %>
+                        <li><a href="/user/profile"><%=currentUser.username%></a></li>
+                        <hr>
+                        <li><a href="/user/logout">Log Out</a></li>
+                      <% }else{ %>
+                        <li><a href="/user/login">Login</a></li>
+                        <hr>
+                        <li><a href="/user/signup">Sign Up</a></li>
+                      <% } %>
+                    </ul>
+                  </div>
                 <% }else if( link.title === "CART" ){ %>
-                  <a class="active" href="<%=link.link%>">
+                  <a class="active nav-link" href="<%=link.link%>">
                     <span>
                       <i class="fas fa-shopping-bag"></i>
                       <% if(session.cart){%>
@@ -51,13 +64,26 @@
                       <% } %>
                     </span></a>
                 <% }else{ %>
-                  <a class="active" href="<%=link.link%>"><span><%=link.title%></span></a>
+                  <a class="active nav-link" href="<%=link.link%>"><span><%=link.title%></span></a>
                 <% } %>
               <% }else{ %>
                 <% if( link.title === "USER" ){ %>
-                  <a href="<%=link.link%>"><span><i class="fas fa-user"></i> <i class="fas fa-caret-down"></i></span></a>
+                  <a class="user-link nav-link" href="<%=link.link%>"><span><i class="fas fa-user"></i> <i class="fas fa-caret-down"></i></span></a>
+                  <div class="hidden-user-links">
+                    <ul class="hidden-user-link-list">
+                      <% if( currentUser ){ %>
+                        <li><a href="/user/profile"><%=currentUser.username%></a></li>
+                        <hr>
+                        <li><a href="/user/logout">Log Out</a></li>
+                      <% }else{ %>
+                        <li><a href="/user/login">Login</a></li>
+                        <hr>
+                        <li><a href="/user/signup">Sign Up</a></li>
+                      <% } %>
+                    </ul>
+                  </div>
                 <% }else if( link.title === "CART" ){ %>
-                  <a href="<%=link.link%>">
+                  <a class="nav-link" href="<%=link.link%>">
                     <span>
                       <i class="fas fa-shopping-bag"></i>
                       <% if(session.cart){%>
@@ -65,7 +91,7 @@
                       <% } %>
                     </span></a>
                 <% }else{ %>
-                  <a href="<%=link.link%>"><span><%=link.title%></span></a>
+                  <a class="nav-link" href="<%=link.link%>"><span><%=link.title%></span></a>
                 <% } %>
               <% } %>
             </li>
