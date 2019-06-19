@@ -119,14 +119,14 @@ router.post("/contact", function(req, res){
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "naturekingwebsite@gmail.com", // generated ethereal user
-          pass: "natureking#1" // generated ethereal password
+          user: process.env.USERMAIL, // generated ethereal user
+          pass: process.env.MAILPASS // generated ethereal password
         }
     });
     
     let mailOptions = {
-        from: '"Nature King Job Request" <naturekingwebsite@gmail.com>', // sender address
-        to: "alkabsh_mohammed@yahoo.com", // list of receivers
+        from: '"Marcs Fusion Cafe Email" <' + process.env.SENDER + '>', // sender address
+        to: process.env.SENDER, // list of receivers
         subject: "New Message From Restaurant Website", // Subject line
         text: "Hello world?", // plain text body
         html: output // html body
@@ -134,13 +134,14 @@ router.post("/contact", function(req, res){
     transporter.sendMail(mailOptions, function(err, info){
         if(err){
             req.flash("error", "We're sorry but your message wasn't sent properly");
-            res.redirect("back");
+            res.redirect("/");
+            return console.log(err);
         }
         console.log("Message sent: %s", info.messageId);
         // Preview only available when sending through an Ethereal account
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         req.flash("success", "Your message has been sent and we will contact you soon!");
-        res.redirect("back");
+        res.redirect("/");
     });
       
   
